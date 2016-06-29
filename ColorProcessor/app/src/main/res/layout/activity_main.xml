@@ -1,83 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+
+<ScrollView
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="processor.al.jho.br.colorprocessor.MainActivity">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="processor.al.jho.br.colorprocessor.MainActivity">
 
-        <RelativeLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_margin">
 
-            <TextView
-                android:id="@+id/tvTitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:text="Inserir Processo:"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
-            <View
-                android:background="#000"
-                android:id="@+id/view"
-                android:layout_marginRight="20dp"
-                android:layout_below="@id/tvTitle1"
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"/>
+                <TextView
+                    android:id="@+id/tvTitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="Inserir Processo:"/>
 
-            <TextView
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCor"
-                android:layout_below="@id/view"
-                android:text="Cor:"/>
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@id/tvTitle1"
+                    android:layout_marginRight="20dp"
+                    android:background="#000"/>
 
-            <EditText
-                android:layout_below="@id/view"
-                android:layout_width="250dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:id="@+id/etCor"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvCor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="Cor:"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvTime"
-                android:layout_below="@id/tvCor"
-                android:text="Tempo:"/>
+                <EditText
+                    android:id="@+id/etCor"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/view"
+                    android:layout_marginRight="20dp"/>
 
-            <EditText
-                android:layout_below="@id/tvCor"
-                android:layout_width="250dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:id="@+id/etTime"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCor"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="Tempo:"/>
 
-            <Button
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/btOk"
-                android:layout_below="@id/tvTime"
-                android:layout_alignRight="@id/etTime"
-                android:text="Ok"
-                />
+                <EditText
+                    android:id="@+id/etTime"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tvCor"
+                    android:layout_marginRight="20dp"/>
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btOk"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignRight="@id/etTime"
+                    android:layout_below="@id/tvTime"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="Ok"
+                    />
 
-    </android.support.v7.widget.CardView>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
-</LinearLayout>
+        <include layout="@layout/process_list_layout"/>
+
+        <include layout="@layout/processor_color_layout"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome da cor:"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tempo:"/>
+
+
+    </LinearLayout>
+
+</ScrollView>
