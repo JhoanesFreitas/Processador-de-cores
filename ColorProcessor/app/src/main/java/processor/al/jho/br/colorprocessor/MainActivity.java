@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity{
     private EditText etCor, etTime;
     private Button btOk;
 
+    Editable cor, tempo;
+
     private AllocNode nameColor, time;
 
       @Override
@@ -30,13 +32,15 @@ public class MainActivity extends AppCompatActivity{
       }
 
     public void rescueValues() {
-        Editable text = this.etCor.getText();
-        Editable tempo = this.etTime.getText();
-
+        cor = this.etCor.getText();
+        tempo = this.etTime.getText();
     }
 
     public AllocNode allocateNewNode() {
         AllocNode node = new AllocNode(nameColor, time);
+
+        nameColor = (AllocNode) cor;
+        time = (AllocNode) tempo;
 
         node.setNameColor(nameColor);
         node.setTime(time);
