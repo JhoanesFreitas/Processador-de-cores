@@ -93,11 +93,13 @@
         <include layout="@layout/processor_color_layout"/>
 
         <TextView
+            android:id="@+id/viewCor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome da cor:"/>
 
         <TextView
+            android:id="@+id/viewTempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tempo:"/>
