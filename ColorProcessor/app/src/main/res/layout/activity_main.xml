@@ -82,6 +82,7 @@
                     android:layout_alignRight="@id/etTime"
                     android:layout_below="@id/tvTime"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:onClick="onClick"
                     android:text="Ok"
                     />
 
@@ -92,19 +93,7 @@
 
         <include layout="@layout/processor_color_layout"/>
 
-        <TextView
-            android:id="@+id/viewCor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome da cor:"/>
-
-        <TextView
-            android:id="@+id/viewTempo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tempo:"/>
-
-
+        <include layout="@layout/nome_tempo_layout"/>
     </LinearLayout>
 
 </ScrollView>
