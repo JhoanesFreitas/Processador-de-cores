@@ -1,4 +1,4 @@
-package processor.al.jho.br.colorprocessor;
+package constants;
 
 /**
  * Created by jhoanesfreitas on 03/07/16.
