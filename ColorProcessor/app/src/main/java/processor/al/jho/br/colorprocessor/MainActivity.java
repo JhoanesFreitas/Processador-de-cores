@@ -49,18 +49,15 @@ public class MainActivity extends AppCompatActivity{
     etTime = (EditText) findViewById(R.id.etTime);
 
     View view = getLayoutInflater().inflate(R.layout.nome_tempo_layout, container, false);
-<<<<<<< HEAD
     TextView viewCor = (TextView) view.findViewById(R.id.tvColor2);
     TextView viewTempo = (TextView) view.findViewById(R.id.tvTime2);
 
-=======
     viewCor = (TextView) view.findViewById(R.id.tvColor2);
     viewTempo = (TextView) view.findViewById(R.id.tvTime2);
 
     //TextView viewCor = (TextView) view.findViewById(R.id.tvColor2);
     //TextView viewTempo = (TextView) view.findViewById(R.id.tvTime2);
       
->>>>>>> 008e215408f6564fcfdb1aed2681c3883285cff1
     View viewLayout = getLayoutInflater().inflate(R.layout.processor_color_layout, container, false);
     layout = (ImageView) viewLayout.findViewById(R.id.llColor);
     viewTempo = (TextView) viewLayout.findViewById(R.id.tvTitle3);
