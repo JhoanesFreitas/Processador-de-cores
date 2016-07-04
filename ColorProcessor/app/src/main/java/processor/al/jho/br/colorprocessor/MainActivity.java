@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity{
     public void rescueValues() {
         cor = this.etCor.getText();
         tempo = this.etTime.getText();
+
+
     }
 
     public AllocNode allocateNewNode() {
