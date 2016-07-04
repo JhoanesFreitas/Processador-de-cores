@@ -2,51 +2,65 @@ package processor.al.jho.br.colorprocessor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity{
 
-    private EditText etCor, etTime;
-    private Button btOk;
+  private EditText etCor, etTime;
+  private LinearLayout layout;
 
-    Editable cor, tempo;
+  Editable cor, tempo;
 
-    private AllocNode nameColor, time;
+  private AllocNode nameColor, time;
 
-      @Override
-      protected void onCreate(Bundle savedInstanceState){
-          super.onCreate(savedInstanceState);
-          setContentView(R.layout.activity_main);
+  @Override
+  protected void onCreate(Bundle savedInstanceState){
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-          EditText etCor = (EditText) findViewById(R.id.etCor);
-          EditText etTime = (EditText) findViewById(R.id.etTime);
+    ViewGroup container;
 
-          Button btOk = (Button) findViewById(R.id.btOk);
+    LayoutInflater inflater = getLayoutInflater();
+    container = (ViewGroup) inflater.getFilter();
 
-          TextView viewCor = (TextView) findViewById(R.id.viewCor);
-          TextView viewTempo = (TextView) findViewById(R.id.viewTempo);
+    EditText etCor = (EditText) findViewById(R.id.etCor);
+    EditText etTime = (EditText) findViewById(R.id.etTime);
 
-      }
+    View view = getLayoutInflater().inflate(R.layout.nome_tempo_layout, container, false);
+    TextView viewCor = (TextView) view.findViewById(R.id.tvColor2);
+    TextView viewTempo = (TextView) view.findViewById(R.id.tvTime2);
+      
+    View viewLayout = getLayoutInflater().inflate(R.layout.processor_color_layout, container, false);
+    layout = (LinearLayout) viewLayout.findViewById(R.id.llColor);
 
-    public void rescueValues() {
-        cor = this.etCor.getText();
-        tempo = this.etTime.getText();
+  }
 
+  public void onClick(View view){
 
-    }
+  }
 
-    public AllocNode allocateNewNode() {
-        AllocNode node = new AllocNode(nameColor, time);
+  public void rescueValues(){
+    cor = this.etCor.getText();
+    tempo = this.etTime.getText();
+  }
 
-        nameColor = (AllocNode) cor;
-        time = (AllocNode) tempo;
+  public AllocNode allocateNewNode(){
+    AllocNode node = new AllocNode(nameColor, time);
 
-        node.setNameColor(nameColor);
-        node.setTime(time);
+    nameColor = (AllocNode) cor;
+    time = (AllocNode) tempo;
 
-        return node;
-    }
+    node.setNameColor(nameColor);
+    node.setTime(time);
+
+    return node;
+  }
 }
