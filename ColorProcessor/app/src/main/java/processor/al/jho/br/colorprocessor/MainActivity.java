@@ -1,22 +1,31 @@
 package processor.al.jho.br.colorprocessor;
 
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import processor.al.jho.br.colormanager.ColorNodeManager;
 import processor.al.jho.br.model.Node;
 
 public class MainActivity extends AppCompatActivity{
 
   private EditText etCor, etTime;
   private TextView viewCor, viewTempo;
-  private LinearLayout layout;
+  private ImageView layout;
+  private ColorNodeManager colorNodeManager;
 
   Editable cor, tempo;
 
@@ -26,12 +35,15 @@ public class MainActivity extends AppCompatActivity{
   @Override
   protected void onCreate(Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_main2);
+
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
 
     ViewGroup container;
 
     LayoutInflater inflater = getLayoutInflater();
-    container = (ViewGroup) inflater.getFilter();
+    container = (ViewGroup) toolbar.getParent();
 
     etCor = (EditText) findViewById(R.id.etCor);
     etTime = (EditText) findViewById(R.id.etTime);
@@ -44,15 +56,23 @@ public class MainActivity extends AppCompatActivity{
     //TextView viewTempo = (TextView) view.findViewById(R.id.tvTime2);
       
     View viewLayout = getLayoutInflater().inflate(R.layout.processor_color_layout, container, false);
-    layout = (LinearLayout) viewLayout.findViewById(R.id.llColor);
+    layout = (ImageView) viewLayout.findViewById(R.id.llColor);
+    viewTempo = (TextView) viewLayout.findViewById(R.id.tvTitle3);
 
+    colorNodeManager = new ColorNodeManager();
   }
 
   public void onClick(View view){
     if(view.getId() == R.id.btOk){
-
+      colorNodeManager.allocNode(etCor.getText().toString(), Integer.parseInt(etTime.getText().toString()));
+      trace("Feito!");
     }else{
-
+      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+        viewTempo.setText("Iuiuiuiu...");
+        layout.setBackground(getResources().getDrawable(android.R.color.black));
+        layout.setVisibility(View.INVISIBLE);
+        trace("FeitoA!");
+      }
     }
   }
 
@@ -61,14 +81,7 @@ public class MainActivity extends AppCompatActivity{
     tempo = this.etTime.getText();
   }
 
-  public Node allocateNewNode(){
-    Node node = new Node(etCor.getText().toString(), Integer.parseInt(etTime.getText().toString()));
-
-    //nameColor = cor;
-
-    //node.setNameColor(nameColor);
-    //node.setTime(time);
-
-    return node;
+  private void trace(String msg){
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
   }
 }

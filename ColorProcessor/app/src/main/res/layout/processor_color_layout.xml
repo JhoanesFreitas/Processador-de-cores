@@ -26,18 +26,17 @@
             android:layout_marginRight="20dp"
             android:layout_width="fill_parent"/>
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/llColor"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorPrimary"
             android:layout_marginRight="20dp"
             android:layout_below="@id/view"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
-        </LinearLayout>
+        </ImageView>
 
     </RelativeLayout>
 
