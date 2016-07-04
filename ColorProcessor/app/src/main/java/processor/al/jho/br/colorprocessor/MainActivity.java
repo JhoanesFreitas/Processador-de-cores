@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity{
     viewCor = (TextView) view.findViewById(R.id.tvColor2);
     viewTempo = (TextView) view.findViewById(R.id.tvTime2);
 
+    //TextView viewCor = (TextView) view.findViewById(R.id.tvColor2);
+    //TextView viewTempo = (TextView) view.findViewById(R.id.tvTime2);
+      
     View viewLayout = getLayoutInflater().inflate(R.layout.processor_color_layout, container, false);
     layout = (LinearLayout) viewLayout.findViewById(R.id.llColor);
 
