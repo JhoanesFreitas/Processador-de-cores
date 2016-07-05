@@ -37,6 +37,7 @@ public class ColorNodeManager{
     Node rec = f;
 
     if(f == null){
+      r = null;
       return null;
     }
 

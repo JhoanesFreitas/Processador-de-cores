@@ -39,9 +39,8 @@ public class Main2Activity extends AppCompatActivity{
   private Node node;
   private LinearLayout linearLayout;
 
-  int cont = 0;
-
-  Editable cor, tempo;
+  int contA = 0;
+  int contB = 0;
 
   private String nameColor = "";
   private long time = 0;
@@ -90,6 +89,7 @@ public class Main2Activity extends AppCompatActivity{
         //item.setAdapter(adapter);
 
         TextView textView = new TextView(this);
+        textView.setId(contA++);
         textView.setText(etCor.getText().toString().toUpperCase() + " | " + etTime.getText().toString() + " » ");
         linearLayout.addView(textView);
 
@@ -102,7 +102,7 @@ public class Main2Activity extends AppCompatActivity{
       }
     } else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-
+        view.setVisibility(View.VISIBLE);
         node = colorNodeManager.dequeue();
         if(node != null)
           nodeLoc(node.getTime());
@@ -128,6 +128,8 @@ public class Main2Activity extends AppCompatActivity{
         }*/
 
         if(node != null && cont == 0){
+          TextView tv = (TextView) findViewById(contB++);
+          tv.setVisibility(View.GONE);
           alter(node);
           cont++;
         }
