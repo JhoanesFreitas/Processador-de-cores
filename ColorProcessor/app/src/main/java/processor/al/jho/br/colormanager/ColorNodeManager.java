@@ -1,5 +1,7 @@
 package processor.al.jho.br.colormanager;
 
+import android.util.Log;
+
 import processor.al.jho.br.model.Node;
 
 /**
@@ -37,6 +39,7 @@ public class ColorNodeManager{
     Node rec = f;
 
     if(f == null){
+      Log.d("f", "entrou!");
       r = null;
       return null;
     }
