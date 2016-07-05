@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -67,25 +68,38 @@ public class Main2Activity extends AppCompatActivity{
 
   public void onClick(View view){
     if(view.getId() == R.id.btOk){
-      colorNodeManager.enqueue(etCor.getText().toString(), Long.valueOf(etTime.getText().toString()));
 
-      list.add(etCor.getText().toString());
+      Log.d("cor", !(etCor.length() > 0 && etTime.length() > 0) + "");
+      if(etCor.length() > 0 && etTime.length() > 0){
 
-      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-          android.R.layout.simple_list_item_1, android.R.id.text1, list);
+        if(etCor.getText().toString().toUpperCase().equals("VERMELHO") || etCor.getText().toString().toUpperCase().equals("VERDE"))
+          colorNodeManager.enqueue(String.valueOf(etCor.getText().toString().toUpperCase().charAt(0)
+              + "" + etCor.getText().toString().toUpperCase().charAt(3)), Long.valueOf(etTime.getText().toString()));
+        else
+          colorNodeManager.enqueue(String.valueOf(etCor.getText().toString().toUpperCase().charAt(0)), Long.valueOf(etTime.getText().toString()));
 
-      item.setAdapter(adapter);
+        list.add(etCor.getText().toString().toUpperCase());
 
-      etCor.setText("");
-      etTime.setText("");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+            android.R.layout.simple_list_item_1, android.R.id.text1, list);
 
-      trace("Feito!");
+        item.setAdapter(adapter);
+
+        etCor.setText("");
+        etTime.setText("");
+
+        trace("Feito!");
+      }else{
+        trace("Cor e/ou tempo não adicionado(s)!");
+      }
     } else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
 
         node = colorNodeManager.dequeue();
-        nodeLoc(node.getTime());
-
+        if(node != null)
+          nodeLoc(node.getTime());
+        else
+          trace("Fila vazia!");
       }
     }
   }
@@ -151,7 +165,7 @@ public class Main2Activity extends AppCompatActivity{
         break;
     }
 
-    viewCor.setText(node.getNameColor());
+    viewCor.setText(list.get((int) time++).toString());
     timeRecov(node.getTime());
 
   }
