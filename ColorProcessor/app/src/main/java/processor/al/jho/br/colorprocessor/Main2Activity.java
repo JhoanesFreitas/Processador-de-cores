@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -19,12 +20,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Delayed;
 
 import constants.Constants;
 import processor.al.jho.br.colormanager.ColorNodeManager;
 import processor.al.jho.br.model.Node;
 
-public class Main2Activity extends AppCompatActivity{
+public class Main2Activity extends AppCompatActivity {
 
 
   private EditText etCor, etTime;
@@ -83,7 +85,7 @@ public class Main2Activity extends AppCompatActivity{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
         int cont = 0;
         node = colorNodeManager.dequeue();
-        while(cont < 1){
+        while(colorNodeManager.isEmpty() || node == null){
 
           if(node != null){
 
@@ -92,6 +94,7 @@ public class Main2Activity extends AppCompatActivity{
               cont++;
             }
             //Log.d("time", node.getNameColor());
+
             new CountDownTimer(node.getTime() * 1000, 1000){
               @Override public void onTick(long millisUntilFinished){
                 Log.d("time", "seconds remaining: " + millisUntilFinished / 1000);
@@ -101,7 +104,6 @@ public class Main2Activity extends AppCompatActivity{
               @Override public void onFinish(){
                 node = colorNodeManager.dequeue();
                 alter(node);
-
                 if(node != null)
                   Log.d("time", node.getNameColor());
 
