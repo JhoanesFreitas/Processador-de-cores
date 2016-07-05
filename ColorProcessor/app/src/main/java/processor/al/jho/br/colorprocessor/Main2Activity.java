@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -81,37 +82,49 @@ public class Main2Activity extends AppCompatActivity{
       trace("Feito!");
     } else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-        int cont = 0;
+
         node = colorNodeManager.dequeue();
-        while(cont < 1){
+        nodeLoc(node.getTime());
+
+      }
+    }
+  }
+
+  private void nodeLoc(long timeEnd){
+
+
+    new CountDownTimer(node.getTime() * 1000, 1000){
+
+      int cont = 0;
+
+      @Override public void onTick(long millisUntilFinished){
+        Log.d("time", "seconds remaining: " + millisUntilFinished / 1000);
+        timeRecov(millisUntilFinished / 1000);
+
+        /*if(colorNodeManager.isEmpty()){
+          this.cancel();
+        }*/
+
+        if(node != null && cont == 0){
+          alter(node);
+          cont++;
+        }
+        //trace("seconds remaining: " + millisUntilFinished / 1000);
+      }
+
+      @Override public void onFinish(){
+        if(node != null){
+          node = colorNodeManager.dequeue();
+          this.cancel();
 
           if(node != null){
-
-            if(cont == 0){
-              alter(node);
-              cont++;
-            }
-            //Log.d("time", node.getNameColor());
-            new CountDownTimer(node.getTime() * 1000, 1000){
-              @Override public void onTick(long millisUntilFinished){
-                Log.d("time", "seconds remaining: " + millisUntilFinished / 1000);
-                //trace("seconds remaining: " + millisUntilFinished / 1000);
-              }
-
-              @Override public void onFinish(){
-                node = colorNodeManager.dequeue();
-                alter(node);
-
-                if(node != null)
-                  Log.d("time", node.getNameColor());
-
-                //trace("Done!");
-              }
-            }.start();
+            nodeLoc(node.getTime());
+            Log.d("time", node.getNameColor());
           }
         }
       }
-    }
+    }.start();
+
   }
 
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public void alter(Node node){
@@ -139,13 +152,12 @@ public class Main2Activity extends AppCompatActivity{
     }
 
     viewCor.setText(node.getNameColor());
-    viewTempo.setText(String.valueOf(node.getTime()));
+    timeRecov(node.getTime());
 
   }
 
-  public void rescueValues(){
-    cor = this.etCor.getText();
-    tempo = this.etTime.getText();
+  private void timeRecov(long timeR){
+    viewTempo.setText(String.valueOf(timeR));
   }
 
   private void trace(String msg){
