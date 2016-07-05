@@ -3,18 +3,12 @@ package processor.al.jho.br.colorprocessor;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
-import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.format.Time;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,6 +34,8 @@ public class Main2Activity extends AppCompatActivity{
   private ImageView layout;
   private ColorNodeManager colorNodeManager;
   private Node node;
+
+  int cont = 0;
 
   Editable cor, tempo;
 
@@ -70,7 +66,7 @@ public class Main2Activity extends AppCompatActivity{
 
   public void onClick(View view){
     if(view.getId() == R.id.btOk){
-      colorNodeManager.allocNode(etCor.getText().toString(), Long.valueOf(etTime.getText().toString()));
+      colorNodeManager.enqueue(etCor.getText().toString(), Long.valueOf(etTime.getText().toString()));
 
       list.add(etCor.getText().toString());
 
@@ -82,22 +78,43 @@ public class Main2Activity extends AppCompatActivity{
       etCor.setText("");
       etTime.setText("");
 
-
       trace("Feito!");
-    }else{
+    } else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+        int cont = 0;
+        node = colorNodeManager.dequeue();
+        while(cont < 1){
 
-        while(!colorNodeManager.isEmpty()){
-          node = colorNodeManager.unAlloc();
-          if(node != null)
-            alter(node);
-          trace("FeitoA!");
+          if(node != null){
+
+            if(cont == 0){
+              alter(node);
+              cont++;
+            }
+            //Log.d("time", node.getNameColor());
+            new CountDownTimer(node.getTime() * 1000, 1000){
+              @Override public void onTick(long millisUntilFinished){
+                Log.d("time", "seconds remaining: " + millisUntilFinished / 1000);
+                //trace("seconds remaining: " + millisUntilFinished / 1000);
+              }
+
+              @Override public void onFinish(){
+                node = colorNodeManager.dequeue();
+                alter(node);
+
+                if(node != null)
+                  Log.d("time", node.getNameColor());
+
+                //trace("Done!");
+              }
+            }.start();
+          }
         }
       }
     }
   }
 
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN) private void alter(Node node){
+  @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public void alter(Node node){
     switch(node.getNameColor()){
       case Constants.BLACK:
         layout.setBackground(getResources().getDrawable(android.R.color.black));
@@ -123,7 +140,7 @@ public class Main2Activity extends AppCompatActivity{
 
     viewCor.setText(node.getNameColor());
     viewTempo.setText(String.valueOf(node.getTime()));
-    
+
   }
 
   public void rescueValues(){

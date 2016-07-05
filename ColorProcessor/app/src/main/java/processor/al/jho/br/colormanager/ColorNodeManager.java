@@ -9,7 +9,7 @@ public class ColorNodeManager{
 
   Node r = null, f = null;
 
-  public boolean allocNode(String color, long time){
+  public boolean enqueue(String color, long time){
 
     Node node = new Node(color, time);
 
@@ -33,12 +33,14 @@ public class ColorNodeManager{
     return f == null;
   }
 
-  public Node unAlloc(){
+  public Node dequeue(){
     Node rec = f;
-    f = f.getProx();
 
-    if(f == null)
+    if(f == null){
       return null;
+    }
+
+    f = f.getProx();
 
     return rec;
   }

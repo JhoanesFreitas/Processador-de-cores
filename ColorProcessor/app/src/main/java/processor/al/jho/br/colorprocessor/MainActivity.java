@@ -1,8 +1,5 @@
 package processor.al.jho.br.colorprocessor;
 
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import processor.al.jho.br.colormanager.ColorNodeManager;
-import processor.al.jho.br.model.Node;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
 
   public void onClick(View view){
     if(view.getId() == R.id.btOk){
-      colorNodeManager.allocNode(etCor.getText().toString(), Integer.parseInt(etTime.getText().toString()));
+      colorNodeManager.enqueue(etCor.getText().toString(), Integer.parseInt(etTime.getText().toString()));
       trace("Feito!");
     }else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
