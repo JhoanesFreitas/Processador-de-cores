@@ -142,6 +142,7 @@ public class Main2Activity extends AppCompatActivity {
       @Override public void onFinish(){
         if(node != null){
           node = colorNodeManager.dequeue();
+          // método cancel quando comentado proporciona que o app seja executado novamente
           this.cancel();
 
           if(node != null){

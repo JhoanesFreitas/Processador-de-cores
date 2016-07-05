@@ -60,7 +60,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="Inserir Processo:"/>
+                        android:text="Inserir Processo:"
+                        android:textSize="11pt"/>
 
                     <View
                         android:id="@+id/view"
@@ -76,7 +77,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:text="Cor:"/>
+                        android:text="Cor:"
+                        android:textSize="10pt"/>
 
                     <EditText
                         android:id="@+id/etCor"
@@ -93,7 +95,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvCor"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:text="Tempo:"/>
+                        android:text="Tempo:"
+                        android:textSize="10pt"/>
 
                     <EditText
                         android:id="@+id/etTime"
@@ -135,7 +138,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Lista de Processo:"/>
+                        android:text="Lista de Processo:"
+                        android:textSize="11pt"/>
 
                     <View
                         android:background="#000"
@@ -188,7 +192,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Processador de cor:"/>
+                        android:text="Processador de cor:"
+                        android:textSize="11pt"/>
 
                     <View
                         android:background="#000"
@@ -223,14 +228,16 @@
                     android:id="@+id/viewCor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome da cor:"/>
+                    android:text="Nome da cor:"
+                    android:textSize="10pt"/>
 
                 <TextView
                     android:id="@+id/tvColor2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="@string/app_name"/>
+                    android:text="@string/app_name"
+                    android:textSize="10pt"/>
 
                 <TextView
                     android:id="@+id/viewTempo"
@@ -238,7 +245,8 @@
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tempo:"/>
+                    android:text="Tempo:"
+                    android:textSize="10pt"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -246,7 +254,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/viewTempo"
                     android:layout_alignParentRight="true"
-                    android:text="@string/app_name"/>
+                    android:text="@string/app_name"
+                    android:textSize="10pt"/>
 
                 <!--<Button
                     android:id="@+id/btStart"
