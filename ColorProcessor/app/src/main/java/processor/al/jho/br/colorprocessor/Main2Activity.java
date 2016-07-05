@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class Main2Activity extends AppCompatActivity{
   private ImageView layout;
   private ColorNodeManager colorNodeManager;
   private Node node;
+  private LinearLayout linearLayout;
 
   int cont = 0;
 
@@ -51,6 +53,8 @@ public class Main2Activity extends AppCompatActivity{
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
+    linearLayout = (LinearLayout) findViewById(R.id.a);
+
     etCor = (EditText) findViewById(R.id.etCor);
     etTime = (EditText) findViewById(R.id.etTime);
 
@@ -58,7 +62,7 @@ public class Main2Activity extends AppCompatActivity{
     viewTempo = (TextView) findViewById(R.id.tvTime2);
 
     layout = (ImageView) findViewById(R.id.llColor);
-    item = (ListView) findViewById(R.id.tvItem);
+    //item = (ListView) findViewById(R.id.tvItem);
 
     colorNodeManager = new ColorNodeManager();
 
@@ -69,7 +73,6 @@ public class Main2Activity extends AppCompatActivity{
   public void onClick(View view){
     if(view.getId() == R.id.btOk){
 
-      Log.d("cor", !(etCor.length() > 0 && etTime.length() > 0) + "");
       if(etCor.length() > 0 && etTime.length() > 0){
 
         if(etCor.getText().toString().toUpperCase().equals("VERMELHO") || etCor.getText().toString().toUpperCase().equals("VERDE"))
@@ -80,10 +83,15 @@ public class Main2Activity extends AppCompatActivity{
 
         list.add(etCor.getText().toString().toUpperCase());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1, android.R.id.text1, list);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+            android.R.layout.simple_list_item_1, android.R.id.text1, list);*/
 
-        item.setAdapter(adapter);
+
+        //item.setAdapter(adapter);
+
+        TextView textView = new TextView(this);
+        textView.setText(etCor.getText().toString().toUpperCase() + " | " + etTime.getText().toString() + " » ");
+        linearLayout.addView(textView);
 
         etCor.setText("");
         etTime.setText("");
