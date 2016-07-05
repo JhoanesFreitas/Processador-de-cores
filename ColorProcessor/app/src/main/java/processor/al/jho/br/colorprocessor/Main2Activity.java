@@ -102,17 +102,17 @@ public class Main2Activity extends AppCompatActivity{
       }
     } else{
       if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-        view.setVisibility(View.VISIBLE);
+        view.setVisibility(View.INVISIBLE);
         node = colorNodeManager.dequeue();
         if(node != null)
-          nodeLoc(node.getTime());
+          nodeLoc(node.getTime(), view);
         else
           trace("Fila vazia!");
       }
     }
   }
 
-  private void nodeLoc(long timeEnd){
+  private void nodeLoc(long timeEnd, final View view){
 
 
     new CountDownTimer(node.getTime() * 1000, 1000){
@@ -142,8 +142,10 @@ public class Main2Activity extends AppCompatActivity{
           this.cancel();
 
           if(node != null){
-            nodeLoc(node.getTime());
+            nodeLoc(node.getTime(), view);
             Log.d("time", node.getNameColor());
+          }else{
+            view.setVisibility(View.VISIBLE);
           }
         }
       }
