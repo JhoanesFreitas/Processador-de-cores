@@ -84,6 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@id/view"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginRight="20dp"/>
 
                     <TextView
@@ -101,6 +102,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@id/tvCor"
                         android:layout_marginRight="20dp"
+                        android:layout_marginLeft="70dp"
                         android:inputType="number"/>
 
                     <Button
